@@ -27,9 +27,9 @@
 #include "minidlnatypes.h"
 
 /* String functions */
-int strcatf(struct string_s *str, char *fmt, ...);
+int strcatf(struct string_s *str, const char *fmt, ...) __printflike(2, 3);
 void strncpyt(char *dst, const char *src, size_t len);
-inline int xasprintf(char **strp, char *fmt, ...);
+inline int xasprintf(char **strp, char *fmt, ...) __printflike(2, 3);
 int ends_with(const char * haystack, const char * needle);
 char *trim(char *str);
 char *strstrc(const char *s, const char *p, const char t);
