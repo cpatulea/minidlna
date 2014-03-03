@@ -309,7 +309,7 @@ unsigned int
 DJBHash(const char *str, int len)
 {
 	unsigned int hash = 5381;
-	unsigned int i = 0;
+	int i = 0;
 
 	for(i = 0; i < len; str++, i++)
 	{

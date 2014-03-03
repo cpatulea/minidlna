@@ -166,7 +166,7 @@ renewSubscription(const char * sid, int sidlen, int timeout)
 {
 	struct subscriber * sub;
 	for(sub = subscriberlist.lh_first; sub != NULL; sub = sub->entries.le_next) {
-		if(memcmp(sid, sub->uuid, 41) == 0) {
+		if(sidlen == 41 && memcmp(sid, sub->uuid, 41) == 0) {
 			sub->timeout = (timeout ? time(NULL) + timeout : 0);
 			return 0;
 		}
@@ -183,7 +183,7 @@ upnpevents_removeSubscriber(const char * sid, int sidlen)
 	DPRINTF(E_DEBUG, L_HTTP, "removeSubscriber(%.*s)\n",
 	       sidlen, sid);
 	for(sub = subscriberlist.lh_first; sub != NULL; sub = sub->entries.le_next) {
-		if(memcmp(sid, sub->uuid, 41) == 0) {
+		if(sidlen == 41 && memcmp(sid, sub->uuid, 41) == 0) {
 			if(sub->notify) {
 				sub->notify->sub = NULL;
 			}
@@ -257,7 +257,7 @@ error:
 static void
 upnp_event_notify_connect(struct upnp_event_notify * obj)
 {
-	int i;
+	unsigned int i;
 	const char * p;
 	unsigned short port;
 	struct sockaddr_in addr;

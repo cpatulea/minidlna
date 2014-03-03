@@ -288,7 +288,7 @@ SendSSDPNotifies(int s, const char *host, unsigned short port,
 					(i > 0 ? "::" : ""),
 					(i > 0 ? known_service_types[i] : ""),
 					(i > 1 ? "1" : ""));
-			if (l >= sizeof(bufr))
+			if (l >= (int)sizeof(bufr))
 			{
 				DPRINTF(E_WARN, L_SSDP, "SendSSDPNotifies(): truncated output\n");
 				l = sizeof(bufr);
