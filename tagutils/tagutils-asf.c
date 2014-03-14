@@ -561,7 +561,7 @@ _get_asffileinfo(char *file, struct song_metadata *psong)
 
 		if(pos + tmp.Size > hdr.Size)
 		{
-			DPRINTF(E_ERROR, L_SCANNER, "Size overrun reading header object %I64x\n", tmp.Size);
+			DPRINTF(E_ERROR, L_SCANNER, "Size overrun reading header object %llux\n", (unsigned long long)tmp.Size);
 			break;
 		}
 

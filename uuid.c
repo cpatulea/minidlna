@@ -96,15 +96,15 @@ read_bootid_node(unsigned char *buf, size_t size)
 static void
 read_random_bytes(unsigned char *buf, size_t size)
 {
-	int i;
+	int fd;
 	pid_t pid;
 
-	i = open("/dev/urandom", O_RDONLY);
-	if(i >= 0)
+	fd = open("/dev/urandom", O_RDONLY);
+	if(fd >= 0)
 	{
-		if (read(i, buf, size) == -1)
+		if (read(fd, buf, size) == -1)
 			DPRINTF(E_MAXDEBUG, L_GENERAL, "Failed to read random bytes\n");
-		close(i);
+		close(fd);
 	}
 	/* Paranoia. /dev/urandom may be missing.
 	 * rand() is guaranteed to generate at least [0, 2^15) range,
@@ -113,6 +113,7 @@ read_random_bytes(unsigned char *buf, size_t size)
 	pid = getpid();
 	while(1)
 	{
+		size_t i;
 		for(i = 0; i < size; i++)
 			buf[i] ^= rand() >> 5;
 		if(pid == 0)

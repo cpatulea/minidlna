@@ -77,8 +77,8 @@ readoptionsfile(const char * fname)
 	char *value;
 	char *t;
 	int linenum = 0;
-	int i;
 	enum upnpconfigoptions id;
+	unsigned int i;
 
 	if(!fname || *fname == '\0')
 		return -1;
