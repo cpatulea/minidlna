@@ -78,6 +78,7 @@ readoptionsfile(const char * fname)
 	char *t;
 	int linenum = 0;
 	enum upnpconfigoptions id;
+	unsigned int i;
 
 	if(!fname || *fname == '\0')
 		return -1;
@@ -133,7 +134,7 @@ readoptionsfile(const char * fname)
 			value++;
 
 		id = UPNP_INVALID;
-		for(unsigned int i=0; i<sizeof(optionids)/sizeof(optionids[0]); i++)
+		for(i=0; i<sizeof(optionids)/sizeof(optionids[0]); i++)
 		{
 			/*printf("%2d %2d %s %s\n", i, optionids[i].id, name,
 			       optionids[i].name); */

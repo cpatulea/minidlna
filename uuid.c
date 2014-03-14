@@ -113,7 +113,8 @@ read_random_bytes(unsigned char *buf, size_t size)
 	pid = getpid();
 	while(1)
 	{
-		for(size_t i = 0; i < size; i++)
+		size_t i;
+		for(i = 0; i < size; i++)
 			buf[i] ^= rand() >> 5;
 		if(pid == 0)
 			break;

@@ -64,6 +64,7 @@ testupnpdescgen_LDADD = \
 SUFFIXES = .tmpl .
 
 .tmpl:
+	mkdir -p "$$(dirname "$@")"
 	sed -e s@:SBINDIR:@${sbindir}@ <$< >$@
 
 GENERATED_FILES = \
