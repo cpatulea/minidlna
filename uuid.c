@@ -102,7 +102,8 @@ read_random_bytes(unsigned char *buf, size_t size)
 	fd = open("/dev/urandom", O_RDONLY);
 	if(fd >= 0)
 	{
-		(void)read(fd, buf, size);
+		if (read(fd, buf, size) == -1)
+			DPRINTF(E_MAXDEBUG, L_GENERAL, "Failed to read random bytes\n");
 		close(fd);
 	}
 	/* Paranoia. /dev/urandom may be missing.
