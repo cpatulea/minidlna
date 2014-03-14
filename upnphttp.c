@@ -245,7 +245,7 @@ ParseHttpHeaders(struct upnphttp * h)
 					h->req_RangeStart = strtoll(p+6, &colon, 10);
 					h->req_RangeEnd = colon ? atoll(colon+1) : 0;
 					DPRINTF(E_DEBUG, L_HTTP, "Range Start-End: %lld - %lld\n",
-					       h->req_RangeStart, h->req_RangeEnd?h->req_RangeEnd:-1);
+					       (long long)h->req_RangeStart, (long long)(h->req_RangeEnd?h->req_RangeEnd:-1));
 				}
 			}
 			else if(strncasecmp(line, "Host", 4)==0)
@@ -1046,7 +1046,7 @@ Process_upnphttp(struct upnphttp * h)
 			new_req_buflen = n + h->req_buflen + 1;
 			if (new_req_buflen >= 1024 * 1024)
 			{
-				DPRINTF(E_ERROR, L_HTTP, "Receive headers too large (received %d bytes)\n", new_req_buflen);
+				DPRINTF(E_ERROR, L_HTTP, "Receive headers too large (received %zd bytes)\n", new_req_buflen);
 				h->state = 100;
 				break;
 			}
