@@ -1813,7 +1813,7 @@ SendResp_dlnafile(struct upnphttp *h, char *object)
 		ret = sql_get_table(db, buf, &result, &rows, NULL);
 		if( (ret != SQLITE_OK) )
 		{
-			DPRINTF(E_ERROR, L_HTTP, "Didn't find valid file for %lld!\n", id);
+			DPRINTF(E_ERROR, L_HTTP, "Didn't find valid file for %lld!\n", (long long)id);
 			Send500(h);
 			return;
 		}
@@ -1866,7 +1866,7 @@ SendResp_dlnafile(struct upnphttp *h, char *object)
 	}
 #endif
 
-	DPRINTF(E_INFO, L_HTTP, "Serving DetailID: %lld [%s]\n", id, last_file.path);
+	DPRINTF(E_INFO, L_HTTP, "Serving DetailID: %lld [%s]\n", (long long)id, last_file.path);
 
 	if( h->reqflags & FLAG_XFERSTREAMING )
 	{
